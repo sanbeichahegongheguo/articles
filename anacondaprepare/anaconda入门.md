@@ -25,24 +25,24 @@
 
 2. 在这一步打上那两个勾。
 
-   ![步骤2](https://img-blog.csdn.net/20151231221831912)
+   ![步骤2](./images/20151231221831912.png)
 
    第一个选项是将安装目录加入到系统的PATH环境变量中，以后在CMD中便可以直接用python命令启动python。 
    第二个选项是让其他IDE能够检测到Anaconda2并将Anaconda2作为默认的Python 2.7。
 
 3. 安装好Anaconda2之后，再安装Anaconda3，这里Anaconda3的安装目录必须选在**D:\Anaconda2\envs**子目录下，如图所示，最后的”py3”可以自己另取。
 
-   ![步骤3](https://img-blog.csdn.net/20151231222220973)
+   ![步骤3](./images/20151231222220973.png)
 
 4. 这里取消掉那两个勾（按照字面意思理解，打上第二个勾应该是没有影响的。至于第一个选项，由于之前已经把Anaconda2添加到系统PATH路径下了，因此再把Anaconda3添加进去，由于顺序在Anaconda2的后面，几乎是没有作用的，所以这里没有勾上）。
 
-   ![步骤4](https://img-blog.csdn.net/20151231222309050)
+   ![步骤4](./images/20151231222309050.png)
 
 5. 安装完成之后，在CMD里面直接输入`python`会启动**Python2**，而使用`activate py3`（**py3**即之前**Python3**安装目录文件夹的名字）命令之后，再使用`python`即可切换至**Python3**，如下图所示。使用`activate py3`命令之后，在命令行前面会出现一个`[py3]`标记，此时使用任何的`python`命令都是在**Python3**下进行的。使用`deactivate`命令可取消激活**Python3**。
 
-   ![步骤5](https://img-blog.csdn.net/20160101084125476)
+   ![步骤5](./images/20160101084125476.png)
 
-### **纯净Python共存**
+### *纯净Python共存*
 
 ------
 
@@ -50,7 +50,7 @@
 
 [miniconda下载主页](http://conda.pydata.org/miniconda.html)
 
-### **总结**
+### *总结*
 
 ------
 
@@ -155,7 +155,7 @@ conda config --remove channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkg
 ```bash
 conda config --show
 ```
-## 四、pip和conda有什么不一样？
+## 四、conda和pip对比
 既然都是关于python的包管理工具为什么有了pip 我们还需要conda？在stackoverflow上的英文回答：
 >
 > Having been involved in the python world for so long, we are all aware of pip, easy_install, and virtualenv, but these tools did not meet all of our specific requirements. The main problem is that they are focused around Python, neglecting non-Python library dependencies, such as HDF5, MKL, LLVM, etc., which do not have a setup.py in their source code and also do not install files into Python’s site-packages directory.
@@ -175,14 +175,173 @@ conda config --show
 > conda使用了一个新的包格式，你不能交替使用pip 和conda。因为pip不能安装和解析conda的包格式。你可以使用两个工具 但是他们是不能交互的。
 >
 
-conda环境的常用启动命令
+conda环境的常用启动命令：
 ```bash
-# 启动
-source activate xxx
+ source activate xxx # 启动xxx环境 
 
-# 关闭
-source deactivate
+source deactivate # 关闭当前环境
 
-# 更新
-conda env update -f environment.yml 更新配置文件
+conda env update -f environment.yml # 更新配置文件
 ```
+
+
+## 五、conda与virtualenv对比
+使用教程，创建虚拟环境
+
+conda创建虚拟环境：
+
+1. 查看包
+
+```bash
+conda list # 查看安装了哪些包
+conda env list # 查看有哪些虚拟环境
+conda -V # 查看conda的版本
+```
+2. 创建虚拟环境,命名为myflaskapp，n就是指name；并安装flask包。
+
+> Note that the conda create command requires that you give it the name of a package to install in the new environment.
+>
+> conda命令创建虚拟环境时，必须指定一个或者几个你需要安装的package。
+
+```bash
+conda create -n py2 python=2* anaconda
+```
+
+
+这样就会安装anaconda2版本。
+
+栗子1：
+这条命令安装了一个名为myflaskapp虚拟环境，安装flask包。
+```vAH
+conda create -n myflaskapp flask
+```
+栗子2：
+这个是克隆创建了一个和原系统一样的python环境，命名为nb。
+```bash
+conda create -n nb --clone root
+```
+栗子3：
+这就不需指定具体包了
+```bash
+conda create --name $ENVIRONMENT_NAME python
+```
+其他：
+```bash
+$ conda create -n py3 python=3*
+$ conda create -n py2 python=2*
+```
+This will create two environments, one with Python3 and the other with Python2. I typically set one of these as my default by adding source activate py3 to my terminal startup. Typically I only use these "named python" environments to run a Python REPL or do general Python tasks. I'll create another conda environment named specifically for each real project I work on.
+
+这个创建两个python版本的环境。
+
+3. 切换环境
+
+**Linux：**
+```bash
+source activate myflaskapp
+```
+**Windows：**
+```bash
+activate myflaskapp
+```
+图片描述
+
+4. 关闭环境
+
+**Linux：**
+
+```bash
+source deactivate
+```
+**Windows：**
+```bash
+deactivate
+```
+5.改指定虚拟环境安装包
+```bash
+conda install -n yourenvname [package]
+```
+6.移除虚拟环境
+移除某个环境中的包
+```bash
+conda remove --name $ENVIRONMENT_NAME $PACKAGE_NAME
+```
+移除某个虚拟环境
+```bash
+conda remove -n yourenvname --all
+```
+这些所有的虚拟环境，都在C:\Anaconda3\envs文件夹下。
+
+virtualenv创建虚拟环境
+
+1. 安装virtualenv
+```bash
+pip install virtualenv
+```
+2. 创建虚拟环境
+
+```bash
+mkdir myproject
+cd myproject
+virtualenv venv
+```
+创建了一个名为myproject的文件夹，然后这里边创建虚拟环境venv。
+
+在创建virtualenv时增加 **--no-site-packages** 选项的virtualenv就不会读取系统包，如下：
+```zsh
+virtualenv nowamagic_venv --no-site-packages
+```
+**--distribute** 选项使virtualenv使用新的基于发行版的包管理系统而不是 setuptools 获得的包。 你现在需要知道的就是 **--distribute** 选项会自动在新的虚拟环境中安装 pip ，这样就不需要手动安装了。 当你成为一个更有经验的Python开发者，你就会明白其中细节。
+```bash
+virtualenv --distribute nowamagic_venv
+```
+
+3. 激活虚拟环境
+**Linux：**
+```bash
+. venv/bin/activate
+```
+或者
+```bash
+source $ENV_BASE_DIR/$ENVIRONMENT_NAME/bin/activate # 进入到venv虚拟环境文件夹下，可以source bin/activate
+```
+**Windows：**
+
+```bash
+venv\scripts\activate
+```
+4. 退出环境
+
+**Linux：**和**Windows：**
+```bash
+deactivate
+```
+*参考资料*
+
+[Using Continuum Analytics Conda as a replacement for virtualenv, pyenv, and more？](https://link.jianshu.com?t=http://kylepurdon.com/blog/using-continuum-analytics-conda-as-a-replacement-for-virtualenv-pyenv-and-more.html)
+
+[conda vs. pip vs. virtualenv](https://link.jianshu.com?t=http://conda.pydata.org/docs/_downloads/conda-pip-virtualenv-translator.html)
+
+[Create virtual environments for python with conda](https://link.jianshu.com?t=https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/)
+
+[conda-documention](https://link.jianshu.com?t=http://conda.pydata.org/docs/py2or3.html)
+
+[flask-virtualenv介绍](https://link.jianshu.com?t=http://docs.jinkan.org/docs/flask/installation.html#installation)
+
+[Switching between Anaconda and Anaconda3](https://link.jianshu.com?t=http://stackoverflow.com/questions/34971379/switching-between-anaconda-and-anaconda3)
+
+[用 conda 管理 Python 开发环境](https://link.jianshu.com?t=http://www.tuicool.com/articles/vyyA7rB)
+
+[用virtualenv建立多个Python独立开发环境](https://link.jianshu.com?t=http://www.nowamagic.net/academy/detail/1330228)
+
+[Python科学计算环境推荐——Anaconda](https://link.jianshu.com?t=http://www.jb51.net/article/51651.htm)
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
