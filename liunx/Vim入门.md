@@ -42,7 +42,7 @@ colorscheme desert12
    ![vivify](./images/20160713204112504.png)
 3. 修改 `.vimrc` 配置文件：`colorscheme molokai`，退出再打开vim就能看到效果了。
 
-注：网站上看到的配色方案效果仅供参考，不一定与实际使用的效果一样。
+>注：网站上看到的配色方案效果仅供参考，不一定与实际使用的效果一样。
 
 ### 2、使用插件安装
 
@@ -70,7 +70,7 @@ reddit 上也有一个关于创建 Colorscheme 的讨论：[Creating Your Lovely
 
 
 Vim的颜色主题在
-```
+```bash
 /usr/share/vim/vim74/colors
 ```
 文件夹里。其中**vim74**文件夹名跟你所使用的vim版本号有关，如果是7.3版本，则是vim73。打开vim后在normal模式下输入“：colorscheme”查看当前的主题，修改主题使用命令“：colorscheme mycolor”，其中mycolor是你usr/share/vim/vim74/colors文件夹包含的文件名。也可以把这个命令写入~/.vimrc配置文件中，这样每次打开Vim都是你设定的主题。
@@ -119,131 +119,131 @@ README.txt里的内容如下
 >
 >   9 There are two basic ways to define a color scheme:
 >
->  10 
+>   10 
 >
->  11 1. Define a new Normal color and set the 'background' option accordingly.
+>   11 1. Define a new Normal color and set the 'background' option accordingly.
 >
->  12     set background={light or dark}
+>   12     set background={light or dark}
 >
->  13     highlight clear
+>   13     highlight clear
 >
->  14     highlight Normal ...
+>   14     highlight Normal ...
 >
->  15     ...
+>   15     ...
 >
->  16 
+>   16 
 >
->  17 2. Use the default Normal color and automatically adjust to the value of
+>   17 2. Use the default Normal color and automatically adjust to the value of
 >
->  18    'background'.
+>   18    'background'.
 >
->  19     highlight clear Normal
+>   19     highlight clear Normal
 >
->  20     set background&
+>   20     set background&
 >
->  21     highlight clear
+>   21     highlight clear
 >
->  22     if &background == "light"
+>   22     if &background == "light"
 >
->  23       highlight Error ...
+>   23       highlight Error ...
 >
->  24       ...
+>   24       ...
 >
->  25     else
+>   25     else
 >
->  26       highlight Error ...
+>   26       highlight Error ...
 >
->  27       ...
+>   27       ...
 >
->  28     endif
+>   28     endif
 >
->  29 
+>   29 
 >
->  30 You can use ":highlight clear" to reset everything to the defaults, and then
+>   30 You can use ":highlight clear" to reset everything to the defaults, and then
 >
->  31 change the groups that you want differently.  This also will work for groups
+>   31 change the groups that you want differently.  This also will work for groups
 >
->  32 that are added in later versions of Vim.
+>   32 that are added in later versions of Vim.
 >
->  33 Note that ":highlight clear" uses the value of 'background', thus set it
+>   33 Note that ":highlight clear" uses the value of 'background', thus set it
 >
->  34 before this command.
+>   34 before this command.
 >
->  35 Some attributes (e.g., bold) might be set in the defaults that you want
+>   35 Some attributes (e.g., bold) might be set in the defaults that you want
 >
->  36 removed in your color scheme.  Use something like "gui=NONE" to remove the
+>   36 removed in your color scheme.  Use something like "gui=NONE" to remove the
 >
->  37 attributes.
+>   37 attributes.
 >
->  38 
+>   38 
 >
->  39 In case you want to set 'background' depending on the colorscheme selected,
+>   39 In case you want to set 'background' depending on the colorscheme selected,
 >
->  40 this autocmd might be useful:
+>   40 this autocmd might be useful:
 >
->  41      autocmd SourcePre */colors/blue_sky.vim set background=dark
+>   41      autocmd SourcePre */colors/blue_sky.vim set background=dark
 >
->  42 Replace "blue_sky" with the name of the colorscheme.
+>   42 Replace "blue_sky" with the name of the colorscheme.
 >
->  43 
+>   43 
 >
->  44 In case you want to tweak a colorscheme after it was loaded, check out that
+>   44 In case you want to tweak a colorscheme after it was loaded, check out that
 >
->  45 ColorScheme autocmd event.
+>   45 ColorScheme autocmd event.
 >
->  46 
+>   46 
 >
->  47 To see which highlight group is used where, find the help for
+>   47 To see which highlight group is used where, find the help for
 >
->  48 "highlight-groups" and "group-name".
+>   48 "highlight-groups" and "group-name".
 >
->  49 
+>   49 
 >
->  50 You can use ":highlight" to find out the current colors.  Exception: the
+>   50 You can use ":highlight" to find out the current colors.  Exception: the
 >
->  51 ctermfg and ctermbg values are numbers, which are only valid for the current
+>   51 ctermfg and ctermbg values are numbers, which are only valid for the current
 >
->  52 terminal.  Use the color names instead.  See ":help cterm-colors".
+>   52 terminal.  Use the color names instead.  See ":help cterm-colors".
 >
->  53 
+>   53 
 >
->  54 The default color settings can be found in the source file src/syntax.c.
+>   54 The default color settings can be found in the source file src/syntax.c.
 >
->  55 Search for "highlight_init".
+>   55 Search for "highlight_init".
 >
->  56 
+>   56 
 >
->  57 If you think you have a color scheme that is good enough to be used by others,
+>   57 If you think you have a color scheme that is good enough to be used by others,
 >
->  58 please check the following items:
+>   58 please check the following items:
 >
->  59 
+>   59 
 >
->  60 - Does it work in a color terminal as well as in the GUI?
+>   60 - Does it work in a color terminal as well as in the GUI?
 >
->  61 - Is "g:colors_name" set to a meaningful value?  In case of doubt you can do
+>   61 - Is "g:colors_name" set to a meaningful value?  In case of doubt you can do
 >
->  62   it this way:
+>   62   it this way:
 >
->  63     let g:colors_name = expand('<sfile>:t:r')
+>   63     let g:colors_name = expand('<sfile>:t:r')
 >
->  64 - Is 'background' either used or appropriately set to "light" or "dark"?
+>   64 - Is 'background' either used or appropriately set to "light" or "dark"?
 >
->  65 - Try setting 'hlsearch' and searching for a pattern, is the match easy to
+>   65 - Try setting 'hlsearch' and searching for a pattern, is the match easy to
 >
->  66   spot?
+>   66   spot?
 >
->  67 - Split a window with ":split" and ":vsplit".  Are the status lines and
+>   67 - Split a window with ":split" and ":vsplit".  Are the status lines and
 >
->  68   vertical separators clearly visible?
+>   68   vertical separators clearly visible?
 >
->  69 - In the GUI, is it easy to find the cursor, also in a file with lots of
+>   69 - In the GUI, is it easy to find the cursor, also in a file with lots of
 >
->  70   syntax highlighting?
+>   70   syntax highlighting?
 >
->  71 - Do not use hard coded escape sequences, these will not work in other
+>   71 - Do not use hard coded escape sequences, these will not work in other
 >
->  72   terminals.  Always use color names or #RRGGBB for the GUI.    
+>   72   terminals.  Always use color names or #RRGGBB for the GUI.    
 
 
 下面给出几个主题的实例，选择自己喜欢的，让你的Vim炫起来！
