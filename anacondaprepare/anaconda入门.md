@@ -98,7 +98,8 @@ conda install anaconda
 
 ### 2.Liunx（Ubuntu）下安装Anaconda
 
-安装anaconda，执行下列命令
+2. 安装anaconda，执行下列命令
+
 ```bash
 bash Anaconda2-5.0.0.1-Linux-x86_64.sh
 ```
@@ -106,6 +107,35 @@ bash Anaconda2-5.0.0.1-Linux-x86_64.sh
 ```bash
 . /Anaconda2-5.0.0.1-Linux-x86_64.sh # . 即为默认使用bash命令开始执行
 ```
+3. 安装过程中会显示配置路径
+
+```
+Prefix=/home/jsy/anaconda2/
+```
+4. 安装完之后，运行python，仍是ubuntu自带的python信息，需自己设置下环境变量
+5. 在终端输入
+
+```bash
+sudo gedit /etc/profile
+```
+打开profile文件
+
+6. 在文件末尾添加一行：
+```bash
+export PATH=/home/[用户名]/anaconda2/bin:$PATH
+```
+其中，将“/home/[用户名]/anaconda2/bin”替换为你实际的安装路径，保存。
+
+![img](./images/20171026100654406.png)
+
+7.重启Linux
+
+8.打开终端，输入python，如果出现如下界面，表明设置成功。
+
+![img](./images/20171026100659839.png)
+
+你还可以用conda info 来查询安装信息
+
 ### 3.更改pip源
 
 #### windows
@@ -183,10 +213,8 @@ conda config --show
 
 conda环境的常用启动命令：
 ```bash
- source activate xxx # 启动xxx环境 
-
+source activate xxx # 启动xxx环境 
 source deactivate # 关闭当前环境
-
 conda env update -f environment.yml # 更新配置文件
 ```
 
