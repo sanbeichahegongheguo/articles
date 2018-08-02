@@ -24,11 +24,12 @@ cp /etc/apt/sources.list /etc/apt/sources.list.backup
 2  修改更新源　
 
 　　打开sources.list (这就是存放更新源的文件)
-
+```bash
 gedit /etc/apt/sources.list
+```
 　　将下面所有内容复制，粘贴并覆盖sources.list文件中的所有内容　
 
-复制代码
+```
 \# deb cdrom:[Ubuntu 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.1)]/ xenial main restricted
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted
@@ -40,15 +41,19 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security universe
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
-
+```
 
 3  让更新源生效
-
+```bash
 sudo apt-get update
+```
 
 
 4  安装软件
-
+```bash
 sudo apt-get install 软件名称
+```
 例如：
+```bash
 sudo apt-get install vim    安装vim
+```
