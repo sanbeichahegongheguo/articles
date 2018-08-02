@@ -5,9 +5,9 @@
 ## 二、Anaconda版本
 ## 三、同时安装Anaconda2\3
 
-### Windows下同时安装Anaconda2和Anaconda3
+### 1.Windows下同时安装Anaconda2和Anaconda3
 
-### *前言*
+#### 1.1*前言*
 
 ------
 
@@ -15,7 +15,7 @@
 
 由于Anaconda2和Anaconda3包含较多的模块，很多人是不需要这些的，因此若只想要较为纯净的Python2和Python3共存的，可以看本文最后一部分。
 
-### *操作步骤*
+#### 1.2*操作步骤*
 
 ------
 
@@ -42,7 +42,7 @@
 
    ![步骤5](./images/20160101084125476.png)
 
-### *纯净Python共存*
+#### 1.3*纯净Python共存*
 
 ------
 
@@ -50,7 +50,7 @@
 
 [miniconda下载主页](http://conda.pydata.org/miniconda.html)
 
-### *总结*
+#### *1.4总结*
 
 ------
 
@@ -96,13 +96,19 @@ conda install anaconda
 
 大功告成。
 
+### 2.Liunx（Ubuntu）下安装Anaconda
 
+安装anaconda，执行下列命令
+```bash
+bash Anaconda2-5.0.0.1-Linux-x86_64.sh
+```
+或   
+```bash
+. /Anaconda2-5.0.0.1-Linux-x86_64.sh # . 即为默认使用bash命令开始执行
+```
+### 3.更改pip源
 
-
-
-#### 更改pip源
-
-### windows
+#### windows
 在 c:\user\username\pip\pip.ini中加入
 ```
 [global]
@@ -110,7 +116,7 @@ index-url=https://pypi.tuna.tsinghua.edu.cn/simple
 [install]  
 trusted-host=pypi.tuna.tsinghua.edu.cn
 disable-pip-version-check = true  
-timeout = 6000 
+timeout = 6000 # 是把超时时间设置为6000s
 ```
 
 >注意：首先需要创建pip文件夹与pip.ini文件。
@@ -132,7 +138,7 @@ index-url=https://pypi.tuna.tsinghua.edu.cn/simple
 [install]  
 trusted-host=pypi.tuna.tsinghua.edu.cn 
 disable-pip-version-check = true  
-timeout = 6000 
+timeout = 6000 # 是把超时时间设置为6000s
 ```
 
 
@@ -185,7 +191,15 @@ conda env update -f environment.yml # 更新配置文件
 ```
 
 
+
+
+
+
+
+
+
 ## 五、conda与virtualenv对比
+
 使用教程，创建虚拟环境
 
 conda创建虚拟环境：
