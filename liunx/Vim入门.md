@@ -5,7 +5,14 @@
 ## 二、vim介绍
 ![vivify](./images/vim8.png)
 ### 1、基本介绍
+![vivify](./images/0xbabaf000l.png)
+Copyright (c) 2007 Laurent Gregoire
+
 Vim is a highly configurable text editor for efficiently creating and changing any kind of text. It is included as "vi" with most UNIX systems and with Apple OS X. 
+
+Vim is often called a "programmer's editor," and so useful for programming that many consider it an entire IDE. It's not just for programmers, though. Vim is perfect for all kinds of text editing, from composing email to editing configuration files.
+
+Despite what the above comic suggests, Vim can be configured to work in a very simple (Notepad-like) way, called evim or Easy Vim.
 
 Vim is rock stable and is continuously being developed to become even better. Among its features are:
 
@@ -79,12 +86,14 @@ lambda 可以使用定义 lambda 表达式范围内的变量，这常被称之�
 
 更多的变化细节，可以参考官网。
 
-### 三、下载:
+8.1版本做了少部分进一步优化，增加了debugger插件。
+
+### 3、下载:
 
 得到最新版本的 Vim 的最好方式是使用 Git ：
-
+```git
 git clone https://github.com/vim/vim.git
-
+```
 更多信息可参考： http://www.vim.org/git.php 。
 
 1. **UNIX/Linux**
@@ -99,13 +108,9 @@ git clone https://github.com/vim/vim.git
 
 ```bash
 安装程序：`ftp://ftp.vim.org/pub/vim/pc/gvim80.exe`
-
 运行时文件：` ftp://ftp.vim.org/pub/vim/pc/vim80rt.zip`
-
 Windows 95/98/NT/2000/XP/7 图形界面版：`ftp://ftp.vim.org/pub/vim/pc/gvim80.zip`
-
 带有 OLE 支持的版本： `ftp://ftp.vim.org/pub/vim/pc/gvim80ole.zip`
-
 Windows NT/2000/XP/7 字符界面版：`ftp://ftp.vim.org/pub/vim/pc/vim80w32.zip`
 ```
 8.0 不再支持的版本
@@ -114,11 +119,15 @@ Windows NT/2000/XP/7 字符界面版：`ftp://ftp.vim.org/pub/vim/pc/vim80w32.zi
 2. 32 位的 MS-DOS/Windows 95/98 的字符界面版
 3. 16 位的 MS-Windows 版本
 
-### 四、文档与帮助
+### 4、文档与帮助
 
 对于初学者来说，有一个叫  vimtutor 的一小时教程可以看看（当然是英文的），请通过 :help tutor 了解更多信息。
 
-学习 Vim 的最好方式之一是在 Vim 中使用:help，如果你还没有 Vim 二进制程序，你也可以看看 runtime/doc/help.txt，它包含了对其它文档的指引。这个用户手册就像一本书一样，推荐使用它来学习 Vim。详见 :help user-manual。
+学习 Vim 的最好方式之一是在 Vim 中使用:help，如果你还没有 Vim 二进制程序，你也可以看看 runtime/doc/help.txt，它包含了对其它文档的指引。这个用户手册就像一本书一样，推荐使用它来学习 Vim。详见
+
+```vim
+:help user-manual
+```
 
 ## 三、常用配置
 
@@ -192,7 +201,13 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 ```
 
+一般情况下在当前用户根目录 **~/** 下没有.vimrc文件，故直接建立该文件：
 
+```bash
+vim ~/.vimrc
+```
+
+然后可以先设置如下内容：
 
 
 ```
@@ -207,8 +222,6 @@ set showcmd
 set cursorline
 filetype indent on
 ```
-
-## 
 
 改变vim配色：安装colorscheme
 
@@ -241,7 +254,7 @@ colorscheme desert12
 
 vim插件：<https://github.com/flazz/vim-colorschemes>，使用插件管理器进行快速安装，安装完成后直接设置即可。
 
-### 自己写一个 colorscheme
+### 3、自己写一个 colorscheme
 
 其实很简单，照葫芦画瓢即可，可以看我自己按照 spacemacs dark theme 修改的 [space-vim-dark](https://github.com/liuchengxu/space-vim-dark) colorscheme,
 
@@ -499,3 +512,154 @@ cargo安装成功后再重试上述步骤1
 
 
 
+# 修改Ubuntu终端中，Vim插入模式下光标实现为竖线状
+
+2017年11月12日 20:57:31
+
+阅读数：1207
+
+原文：[Change cursor shape in different modes](http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes)
+
+------
+
+不同终端版本修改代码不同。
+
+使用如下命令查看Gnome-Terminal终端的版本：
+
+```
+aptitude show gnome-terminal1
+```
+
+------
+
+To change the shape of the cursor in different modes, you can add the following into your vimrc.
+
+将不同版本终端对应的代码添加到vimrc文件中即可。
+
+我的终端版本为3.18***，vimrc文件位于etc/vim/vimrc
+
+------
+
+# For the Gnome-Terminal (version 2.26)Edit
+
+This makes your cursor change in all open terminals. Upgrade your terminal and use the version above instead.
+
+```
+if has("autocmd")
+  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+endif12345
+```
+
+# For the Gnome-Terminal (version 3.x)Edit
+
+First make a script gnome-terminal-cursor-shape.sh
+
+```
+#!/bin/sh
+DEFAULTPROF=`dconf read /org/gnome/terminal/legacy/profiles:/default`
+DEFAULTPROF=`echo "$DEFAULTPROF" | sed -e "s/^'/:/" -e "s/'$//"`
+dconf write /org/gnome/terminal/legacy/profiles:/$DEFAULTPROF/cursor-shape "'$1'"1234
+```
+
+Make it executable & put it in /usr/local/bin Next, add this to .vimrc
+
+```
+if has("autocmd")
+    au InsertEnter *
+        \ if v:insertmode == 'i' |
+        \   silent execute "!gnome-terminal-cursor-shape.sh ibeam" |
+        \ elseif v:insertmode == 'r' |
+        \   silent execute "!gnome-terminal-cursor-shape.sh underline" |
+        \ endif
+    au InsertLeave * silent execute "!gnome-terminal-cursor-shape.sh block"
+    au VimLeave * silent execute "!gnome-terminal-cursor-shape.sh block"
+endif12345678910
+```
+
+If you use more than one profile in gnome-terminal, you might have to adapt this to your profiles.
+
+# For the Gnome-Terminal (version ≥3.16) Edit
+
+This method has the advantage compared to the method above that it influences the given tab only, and not all the tabs that use the given profile. Add the following into .vimrc
+
+```
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' | 
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif12345678910
+```
+
+Above snippet disables cursor blinking. If you want cursor blink, just decrement all the 3 numbers above 2,4,6 by one each.
+
+```
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' | 
+    \   silent execute '!echo -ne "\e[5 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
+```
+
+# 【Ubuntu】aptitude命令详解
+
+2017年02月28日 00:10:37
+
+阅读数：2900
+
+# aptitude
+
+> aptitude 与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大的包管理工具基于大名鼎鼎的APT机制, 整合了 dselect 和 apt-get 的所有功能, 并提供的更多特性,特别是在依赖关系处理上。。与 apt-get 不同的是，aptitude在处理依赖问题上更佳一些。举例来说，aptitude在删除一个包时，会同时删除本身所依赖的包。这样，系统中不会残留无用的包，整个系统更为干净。
+
+推荐使用aptitude命令来代替apt-get，下载或者删除依赖包的时候aptitude要比apt-get更好。不过aptitude和apt-get不能混用，要不然互相都不知道对方做了什么
+
+## 使用
+
+------
+
+### 语法
+
+```
+aptitude 选项 参数
+12
+```
+
+### 选项
+
+```
+-h：显示帮助信息
+-d：仅下载软件包，不执行安装操作
+-P：每一步操作都要求确认
+-y：所有问题都回答“yes”
+-v：显示附加信息； 
+-u：启动时下载新的软件包列表
+1234567
+```
+
+### 参数
+
+aptitude常用命令
+
+```
+aptitude update            更新可用的包列表
+aptitude safe-upgrade      执行一次安全的升级
+aptitude full-upgrade      将系统升级到新的发行版
+aptitude install pkgname   安装包
+aptitude remove pkgname    删除包
+aptitude purge pkgname     删除包及其配置文件
+aptitude search string     搜索包
+aptitude show pkgname      显示包的详细信息
+aptitude clean             删除下载的包文件
+aptitude autoclean         仅删除过期的包文件
+```
