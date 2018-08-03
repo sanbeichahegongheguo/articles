@@ -30,17 +30,19 @@ gedit /etc/apt/sources.list
 　　将下面所有内容复制，粘贴并覆盖sources.list文件中的所有内容　
 
 ```
-\# deb cdrom:[Ubuntu 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.1)]/ xenial main restricted
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
 ```
 
 3  让更新源生效
