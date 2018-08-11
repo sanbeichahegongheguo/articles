@@ -3,9 +3,9 @@
 
 
 ## 二、vim介绍
-![vivify](./images/vim8.png)
+![img](./images/vim8.png "vim8.0")
 ### 1、基本介绍
-![vivify](./images/0xbabaf000l.png)
+![img](./images/0xbabaf000l.png 'comic')
 Copyright (c) 2007 Laurent Gregoire
 
 Vim is a highly configurable text editor for efficiently creating and changing any kind of text. It is included as "vi" with most UNIX systems and with Apple OS X. 
@@ -211,16 +211,20 @@ vim ~/.vimrc
 
 
 ```
+colorscheme desert
 syntax on
 set number
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set expandtab
-set expandtab
 set showcmd
 set cursorline
+set mouse=a
 filetype indent on
+set lazyredraw
+set showmatch
+set incsearch
 ```
 
 改变vim配色：安装colorscheme
@@ -628,30 +632,28 @@ endif
 
 ------
 
-### 语法
+### 1. 语法
 
-```
+```bash
 aptitude 选项 参数
-12
 ```
 
-### 选项
+### 2. 选项
 
-```
+```bash
 -h：显示帮助信息
 -d：仅下载软件包，不执行安装操作
 -P：每一步操作都要求确认
 -y：所有问题都回答“yes”
 -v：显示附加信息； 
 -u：启动时下载新的软件包列表
-1234567
 ```
 
-### 参数
+### 3. 参数
 
-aptitude常用命令
+**aptitude常用命令**
 
-```
+```bash
 aptitude update            更新可用的包列表
 aptitude safe-upgrade      执行一次安全的升级
 aptitude full-upgrade      将系统升级到新的发行版
