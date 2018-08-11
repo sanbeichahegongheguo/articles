@@ -9,3 +9,26 @@ E:\dev_install_root\Python27\Scripts
 ![img](./images/add scripts into path.png)
 
 因为E:\dev_install_root\Python27\Scripts中包含了对应的pip。
+
+
+
+# pip安装第三方库时提示:You are using pip version 8.1.1, however version 9.1.0 is available.
+
+用pip安装第三方库时提示：
+
+```bash
+You are using pip version 8.0.2, however version 8.1.0 is available.
+```
+
+然而使用
+
+```bash
+pip install --upgrade pip 
+```
+
+无效，用
+
+```bash
+python -m pip install --upgrade pip
+```
+
