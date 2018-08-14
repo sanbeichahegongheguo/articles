@@ -226,6 +226,14 @@ Zotero还有更多进阶玩法，在这里不展开讲了。各位感兴趣的�
 
 <http://www.zotero.org/blog/zotero-apps-go-mobile/>
 
+
+
+## ZotFile: Advanced PDF management for Zotero
+
+https://github.com/jlegewie/zotfile
+
+http://zotfile.com/#how-to-install--set-up-zotfile
+
 ## 小结
 
 与其说[Zotero]是一个文献管理软件，不如说是一个知识管理平台。选择开源软件，就是选择一个生态链，这是与商业软件，如[Papers2]、[mendeley]或[Endnote]非常不一样的地方。
