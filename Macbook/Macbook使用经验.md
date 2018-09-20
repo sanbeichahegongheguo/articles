@@ -6,21 +6,22 @@
 
 brew是一个第三方基于Ruby开发的Mac OS X操作系统软件包管理工具，类似于centos下的yum或者ubuntu下的apt-get，非常方便，免去了自己手动编译安装的不便。
 ```bash
-　　brew 安装目录  /usr/local/Cellar
-　　brew 配置目录  /usr/local/etc
-　　brew 命令目录  /usr/local/bin
+brew 安装目录  /usr/local/Cellar
+brew 配置目录  /usr/local/etc
+brew 命令目录  /usr/local/bin
 ```
 　　注：homebrew在安装完成后自动在/usr/local/bin加个软连接，所以平常都是用这个路径。
 
 \# 安装方法（在终端根目录下输入）：
 
 >官方安装地址的安装方式：
->
+>```bash
 >/usr/bin/ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)
->
+>```
 >但很不稳定，推荐命令：
->
+>```bash
 >/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+>```
 
 输入几次密码和回车后就安装成功了。
 
@@ -57,7 +58,7 @@ brew services restart php55 # 重启php-fpm
 
 ~目录下输入：
 ```bash
-cd "$(brew --repo)" # 这个命令会进入到相应目录，可以用pwd命令查看
+cd "$(brew --repo)"  # 这个命令会进入到相应目录，可以用pwd命令查看
 ```
 ```bash
 git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git\ # 这个命令就是修改镜像源为清华镜像源。清华镜像源详细介绍见：[清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)# Homebrew Bottles源(二进制代码包)
