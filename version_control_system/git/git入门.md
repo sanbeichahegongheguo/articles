@@ -6,12 +6,6 @@
 
 ## 二、Git基本用法
 
-
-
-
-
-
-
 一般来说，日常使用只要记住下图6个命令，就可以了。但是熟练使用，恐怕要记住60～100个命令。
 
 ![img](./images/bg2015120901.png)
@@ -298,3 +292,5 @@ C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ca477551eeb4aea0e4ae9fcd3358bd967
 在点击Add SSH Key，在title处填入任意的标识，在Key部分里面添加刚才复制的id_rsa.pub文件里的内容，点击添加即可；![img](./images/1019973-20161014220018765-196157985.png)
 
 最后只需测试一下链接是否正常即可。接着输入：ssh -T [git@github.com](mailto:git@github.com)，这时会问是否继续连接，我们输入 yes，这样，我们的git配置就完成了。
+
+(完)
