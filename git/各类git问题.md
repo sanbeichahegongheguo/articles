@@ -1,4 +1,6 @@
-# 1、The file will have its original line endings in your working directory
+# Git问题总结
+
+## 1、The file will have its original line endings in your working directory
 
 出现这个问题主要原因是：我们从别人github地址上通过git clone下载下来，而又想git push到我们自己的github上，那么就会出现上面提示的错误信息
 
@@ -10,7 +12,7 @@ git add .
 ```
 . 代表当前目录
 
-# 2、Git 的 config 有三级
+## 2、Git 的 config 有三级
 
 ### 2.1 最高级：`git config --system`
 
@@ -31,3 +33,5 @@ git add .
 只针对该仓库。
 
 每一个级别覆盖上一级别的配置。
+
+## 3、
