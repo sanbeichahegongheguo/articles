@@ -1,3 +1,5 @@
+# linux下”is not in the sudoers file“问题的解决办法
+
 ## 1.原因
 
 

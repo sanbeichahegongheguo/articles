@@ -1,4 +1,7 @@
+# apt-get upgarde 和dist-upgrade的差别
+
 Debian/Ubuntu Linux都使用apt,升级时都是: 
+
 ```bash
 apt-get update 
 apt-get upgrade 
@@ -12,7 +15,7 @@ apt-get dist-upgrade
 
 第二步，如果这个包没有发布更新，就不管它；
 
-​            如果发布了更新，就把包下载到电脑上，并安装。
+如果发布了更新，就把包下载到电脑上，并安装。
 
  
 
@@ -28,19 +31,21 @@ apt-get upgrade 与apt-get dist-upgrade对应的是第二步。
 
 一般在运行upgrade或dist-upgrade之间，要运行update.
 
-但是常常有人会问, 
-upgrade和dist-upgrade有何不同。
+但是常常有人会问, upgrade和dist-upgrade有何不同。
 
 仔细查查,似乎大家对upgrade和dist-upgrade的解释都有点不同,在此也纪录自己的看法。
 
 我认为apt-get 的 upgrade和dist-upgrade的差别：
+
 upgrade：系统将现有的Package升级,如果有相依性的问题,而此相依性需要安装其它新的Package或影响到其它Package的相依性时,此Package就不会被升级,会保留下来。
+
 dist-upgrade：可以聪明的解决相依性的问题,如果有相依性问题,需要安装/移除新的Package,就会试着去安装/移除它。 
 (所以通常这个会被认为是有点风险的升级) 
 
 apt-get upgrade 和 apt-get dist-upgrade 本质上是没有什么不同的。
 
 只不过，dist-upgrade 会识别出当依赖关系改变的情形并作出处理，而upgrade对此情形不处理。
+
 例如软件包 a 原先依赖 b c d，但是在源里面可能已经升级了，现在是 a 依赖 b c e。这种情况下，dist-upgrade 会删除 d 安装 e，并把 a 软件包升级，而 upgrade 会认为依赖关系改变而拒绝升级 a 软件包。
 
 man apt-get的解释: 
