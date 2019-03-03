@@ -261,3 +261,32 @@ git config --global alias.lg "log --graph"
 git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %Cblue%cn%Creset' --abbrev-commit --date=relative
 ```
 
+## 8、git查看各个branch之间的关系图
+
+### 方法一：
+
+使用git log命令：
+
+```bash
+git log --graph --decorate --oneline --simplify-by-decoration --all
+```
+
+说明：
+
+--decorate 标记会让*git log*显示每个commit的引用(如:分支、tag等) 
+
+--oneline 一行显示
+
+--simplify-by-decoration 只显示被branch或tag引用的commit
+
+--all 表示显示所有的branch，这里也可以选择，比如我想指向显示分支ABC的关系，则将`--all`替换为`branchA branchB branchC`。
+
+### 方法二：
+
+使用gitk工具：
+
+```bash
+gitk --simplify-by-decoration --all
+```
+
+## 9、
